@@ -24,9 +24,10 @@ All other modules have to be added as pert of ver 2.0.
 ### Directory Structure
 
 ### following tables already exist in fedbmiraj database 
-  * employee,
-  * site, 
-  * team .
+  * employee
+  * site
+  * team 
+  * attendance_band
  
 ### following new tables are required :
  * attendance_mc ( Proton Team will be creating this),
@@ -37,9 +38,9 @@ All other modules have to be added as pert of ver 2.0.
  * app_attendance .
  
 
-Explain the project structure including which folders contain what.
-
 Shift Rate Default is a team wise - day wise Salary Rate / Day.  Shift Rate Actual is the rate updated by site manager at the end of each day. If Shift Rate Actual is not updated then the default Shift Rate is used for calculation of salary .
+
+App_Attendance is the attendance updated from Mobile App and this has to be stored in a separate table from attendance updated from Attendance Machines.  The facilty for using APP for attendance is to be controlled from employee master. (is APP attendance allowed : YES / No ).  This will be a new field in the existing employee table.
 
 
 ### Dependencies
@@ -65,6 +66,9 @@ code blocks for commands
 ## Help
 
 Here's a link to the presentation about coding practices and guide to git and GitHub: [link](https://drive.google.com/file/d/1_Xi1FKCGCzO1_1x3FQt5Na09HfqZmm2g/view?usp=sharing)
+
+Here is a link to Guideline for building reports [link](https://docs.google.com/spreadsheets/d/1PqOP_f5NTazH3YH8ujCr5Y-thCC-mMQxgIwAPLuAlOY/edit?usp=sharing)
+
 
 ### Screen Layout Template
 
