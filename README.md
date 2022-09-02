@@ -6,11 +6,41 @@ FE and WCE 2022 project on attendance and payroll app
 
 An in-depth paragraph about your project, the tools and methods used, design approach, and overview of use.
 
+
+![WCE22 Diagrams-Payroll App Schematic drawio](https://user-images.githubusercontent.com/91695658/188133032-d267424c-96be-4fa9-8ce7-1e3d540b34eb.png)
+
+
 ## Project Structure
+
+Django - MySQL 
+
+User module is already there in ver 1.0  www.feweather.com
+
+All other modules have to be added as pert of ver 2.0.  
+ - Shift Management, Leave and  Advance Request, Payroll Reports and Scorecard report, Attendance Device Management, Missing Punch Report and Updation, Manual Punch 
+
+
 
 ### Directory Structure
 
+### following tables already exist in fedbmiraj database 
+  employee
+  site 
+  team
+ 
+### following new tables are required :
+ attendance_mc ( Proton Team will be creating this)
+ holiday
+ leave
+ shift_Rate_Default
+ shift_Rate_Actual
+ app_attendance 
+ 
+
 Explain the project structure including which folders contain what.
+
+Shift Rate Default is a team wise - day wise Salary Rate / Day.  Shift Rate Actual is the rate updated by site manager at the end of each day. If Shift Rate Actual is not updated then the default Shift Rate is used for calculation of salary .
+
 
 ### Dependencies
 
