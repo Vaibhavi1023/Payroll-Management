@@ -24,17 +24,17 @@ All other modules have to be added as pert of ver 2.0.
 ### Directory Structure
 
 ### following tables already exist in fedbmiraj database 
-  employee
-  site 
-  team
+  * employee,
+  * site, 
+  * team .
  
 ### following new tables are required :
- attendance_mc ( Proton Team will be creating this)
- holiday
- leave
- shift_Rate_Default
- shift_Rate_Actual
- app_attendance 
+ * attendance_mc ( Proton Team will be creating this),
+ * holiday,
+ * leave ,
+ * shift_Rate_Default,
+ * shift_Rate_Actual,
+ * app_attendance .
  
 
 Explain the project structure including which folders contain what.
