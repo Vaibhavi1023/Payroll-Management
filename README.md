@@ -74,7 +74,9 @@ Here is a link to Guideline for building reports [link](https://docs.google.com/
 
 ![FirstScreen Layout](https://user-images.githubusercontent.com/91695658/184523458-e53e2626-8f09-4e21-a7ed-2b2bbcb0fc9d.png)
 
+### Database Entity Relation Diagram
 
+![WCE22 Diagrams-ERD-Payroll-JRP drawio](https://user-images.githubusercontent.com/40076115/188221587-85d0877c-7e72-483a-a60f-4c9655da6e08.png)
 
 Add any additional documentation.
 
