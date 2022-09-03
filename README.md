@@ -37,10 +37,15 @@ All other modules have to be added as pert of ver 2.0.
  * shift_Rate_Actual,
  * app_attendance .
  
+ 
+ 
 
 Shift Rate Default is a team wise - day wise Salary Rate / Day.  Shift Rate Actual is the rate updated by site manager at the end of each day. If Shift Rate Actual is not updated then the default Shift Rate is used for calculation of salary .
 
 App_Attendance is the attendance updated from Mobile App and this has to be stored in a separate table from attendance updated from Attendance Machines.  The facilty for using APP for attendance is to be controlled from employee master. (is APP attendance allowed : YES / No ).  This will be a new field in the existing employee table.
+
+![WCE22 Diagrams-ERD-Payroll-JRP drawio](https://user-images.githubusercontent.com/91695658/188256121-92a26c62-6cb0-4ddd-aea5-b806ba1f73d1.png)
+
 
 
 ### Dependencies
