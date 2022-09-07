@@ -84,8 +84,22 @@
                                 <td>{{ staff.admin.last_login }}</td>
                                 <td>{{ staff.admin.date_joined }}</td>
                                 <td>
-                                    <a href="{% url 'edit_staff' staff.admin.id %}" class="btn btn-success">Edit</a> 
-                                    <a href="{% url 'delete_staff' staff.admin.id %}" class="btn btn-danger">Delete</a>
+                                    
+                                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                                    
+                                    <div class="btn" style="background-color: #555555" >
+                                    
+                                        <a href="{}" > <span class="glyphicon glyphicon-eye-open" style="color: #ffff;"></span></a> &nbsp;
+                                    
+                                        <a href="{% url 'edit_staff' staff.admin.id %}"     ><span class="glyphicon glyphicon-pencil" style="color: #ffff;"></span></a> &nbsp;
+
+                                        <a href="{% url 'delete_staff' staff.admin.id %}"  ><span class="glyphicon glyphicon-trash" style="color: #ffff;"></span></a> 
+
+                                    
+                                </div>
                                 </td>
                                 </tr>
                                 {% endfor %}
