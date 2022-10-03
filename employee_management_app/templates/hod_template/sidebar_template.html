@@ -12,9 +12,9 @@
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
+          <!-- <div class="image">
             <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
-          </div>
+          </div> -->
           <div class="info">
             <a href="{% url 'admin_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
           </div>
@@ -47,7 +47,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               {% url 'add_staff' as add_staff %}
               <a href="{{ add_staff }}" class="nav-link {% if request.path == add_staff %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
@@ -55,7 +55,7 @@
                   Add Staff
                 </p>
               </a>
-            </li>
+            </li> -->
 
             <!-- <li class="nav-item">
               {% url 'manage_student' as manage_student %}
@@ -189,6 +189,16 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Staff Leave
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'staff_attendance_view' as staff_attendance_view %}
+              <a href="{{ staff_attendance_view }}" class="nav-link {% if request.path == staff_attendance_view %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Staff Attendance
                 </p>
               </a>
             </li>

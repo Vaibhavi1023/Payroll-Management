@@ -71,7 +71,7 @@ class FeedBackStaffs(models.Model):
 
 class NotificationStaffs(models.Model):
     id = models.AutoField(primary_key=True)
-    stafff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -79,7 +79,18 @@ class NotificationStaffs(models.Model):
 
 
 
-
+class AttendanceReportStaff(models.Model):
+    id = models.AutoField(primary_key=True)
+    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    # attendance_date = models.CharField(max_length=255)
+    attendance_date=models.DateField(null=True)
+    attendance_message = models.TextField()
+    attendance_status = models.TextField()
+    intime=models.TimeField(null=True)
+    outtime=models.TimeField(null=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
 
 #Creating Django Signals
 

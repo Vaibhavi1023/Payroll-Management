@@ -1,3 +1,5 @@
+from dataclasses import fields
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
@@ -7,9 +9,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
 
-from employee_management_app.models import CustomUser,  Staffs,  FeedBackStaffs,  LeaveReportStaff
+from employee_management_app.models import CustomUser,  Staffs,  FeedBackStaffs,  LeaveReportStaff, AttendanceReportStaff
 
-
+from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget
+from django import forms
 
 def admin_home(request):
    
@@ -241,5 +244,69 @@ def staff_profile(request):
     pass
 
 
-def student_profile(requtest):
+def student_profile(request):
     pass
+
+
+
+
+def add_attendance(request):
+    return render(request, "hod_template/add_attendance_template.html")
+
+
+
+
+
+
+def add_attendance_save(request):
+   
+    if request.method != "POST":
+        messages.error(request, "Invalid Method ")
+        return redirect('add_attendance')
+    else:
+    
+        x=request.POST.get('staff_id')
+        staff_id=Staffs.objects.get(admin=x)
+        print(staff_id.id)
+        attendance_date=datetime.today()
+        attendance_message = request.POST.get('attendance_message')
+        attendance_status = request.POST.get('attendance_status')
+        intime= request.POST.get('intime')
+        outtime= request.POST.get('outtime')
+        # class Meta:
+        #     model= AttendanceReportStaff
+        #     fields= "__all__"
+        #     widgets={
+        #         "attendance_date": AdminDateWidget(),
+        #         "intime": AdminTimeWidget(),
+        #         "outtime": AdminTimeWidget(),
+        #     }
+
+        # email = request.POST.get('email')
+        # password = request.POST.get('password')
+        # address = request.POST.get('address')
+
+        try:
+            user = AttendanceReportStaff.objects.create(staff_id=staff_id, attendance_message=attendance_message,attendance_date=attendance_date,attendance_status=attendance_status, intime=intime, outtime=outtime)
+            #user.save()
+            messages.success(request, "Staff Added Successfully!")
+            return redirect('add_attendance')
+        except:
+            messages.error(request, "Failed to Add attendance!")
+            return redirect('add_attendance')
+
+def staff_attendance_view(request):
+    attendance = AttendanceReportStaff.objects.all()
+    context = {
+
+        "attendance": attendance
+    }
+    return render(request, 'hod_template/staff_attendance_view.html', context)
+
+# def staff_attendance_view(request):
+#     staffs = Staffs.objects.all()
+#     context = {
+#         "staffs": staffs
+#     }
+#     return render(request, "hod_template/staff_attendance_view.html", context)   
+
