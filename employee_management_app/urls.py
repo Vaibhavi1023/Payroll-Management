@@ -48,4 +48,6 @@ urlpatterns = [
     path('add_attendance_save/', HodViews.add_attendance_save, name="add_attendance_save"),
     
 
+    path('export_csv/', HodViews.export_csv, name="export_csv"),
+
 ]

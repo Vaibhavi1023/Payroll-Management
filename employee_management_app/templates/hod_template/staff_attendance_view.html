@@ -9,9 +9,14 @@
 {% load static %}
 
 <section class="content">
-        <div class="container-fluid">
-            <a class="btn btn-primary" href="{% url 'add_attendance' %}" role="button">+ Add Attendance</a> <br/>&nbsp;
 
+    <div class="container-fluid">
+        <a class="btn btn-primary" href="{% url 'export_csv' %}" role="button" style="font-size: 15px;">Attendance Report</a> <br/>&nbsp;
+    </div>
+        <div class="container-fluid">
+            <a class="btn btn-primary" href="{% url 'add_attendance' %}" role="button" style="font-size: 15px;">+ Add Attendance</a> <br/>&nbsp;
+
+            
             <div class="row">
                 <div class="col-md-12">
                     <!-- general form elements -->

@@ -1,5 +1,6 @@
 from dataclasses import fields
 from datetime import datetime
+from urllib import response
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
@@ -8,7 +9,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
-
+import csv
 from employee_management_app.models import CustomUser,  Staffs,  FeedBackStaffs,  LeaveReportStaff, AttendanceReportStaff
 
 from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget
@@ -310,3 +311,16 @@ def staff_attendance_view(request):
 #     }
 #     return render(request, "hod_template/staff_attendance_view.html", context)   
 
+def export_csv(request):
+
+    response=HttpResponse(content_type='text/csv')
+    response['Content-Disposition']='attachment; fileName=Attendance'+ '.csv'
+    writer=csv.writer(response)
+    writer.writerow(['Staff ID','Attendance Date','Attendance Message','Attendance Status','In Time','Out Time'])
+
+
+    attendances = AttendanceReportStaff.objects.all()
+    for attendance in attendances:
+
+        writer.writerow([attendance.staff_id.id, attendance.attendance_date, attendance.attendance_message, attendance.attendance_status,attendance.intime,attendance.outtime])
+    return response
