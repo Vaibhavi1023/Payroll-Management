@@ -21,10 +21,12 @@ def staff_home(request):
 
 
 def staff_apply_leave(request):
-    staff_obj = Staffs.objects.get(admin=request.user.id)
-    leave_data = LeaveReportStaff.objects.filter(staff_id=staff_obj)
+    # staff_obj = Staffs.objects.get(admin=request.user.id)
+    leave_data = LeaveReportStaff.objects.all()
+    
     context = {
         "leave_data": leave_data
+
     }
     return render(request, "staff_template/staff_apply_leave_template.html", context)
 
@@ -34,12 +36,13 @@ def staff_apply_leave_save(request):
         messages.error(request, "Invalid Method")
         return redirect('staff_apply_leave')
     else:
-        leave_date = request.POST.get('leave_date')
-        leave_message = request.POST.get('leave_message')
+        leave_startdate = request.POST.get('leave_startdate')
+        leave_enddate = request.POST.get('leave_enddate')
+        # leave_message = request.POST.get('leave_message')
 
         staff_obj = Staffs.objects.get(admin=request.user.id)
         try:
-            leave_report = LeaveReportStaff(staff_id=staff_obj, leave_date=leave_date, leave_message=leave_message, leave_status=0)
+            leave_report = LeaveReportStaff(staff_id=staff_obj, leave_startdate=leave_startdate,leave_enddate=leave_enddate, leave_status=0)
             leave_report.save()
             messages.success(request, "Applied for Leave.")
             return redirect('staff_apply_leave')
