@@ -269,9 +269,9 @@ def add_attendance_save(request):
         x=request.POST.get('staff_id')
         staff_id=Staffs.objects.get(admin=x)
         print(staff_id.id)
-        attendance_date=datetime.today()
-        attendance_message = request.POST.get('attendance_message')
-        attendance_status = request.POST.get('attendance_status')
+        attendance_date=request.POST.get('attendance_date')
+        # attendance_message = request.POST.get('attendance_message')
+        # attendance_status = request.POST.get('attendance_status')
         intime= request.POST.get('intime')
         outtime= request.POST.get('outtime')
         # class Meta:
@@ -288,7 +288,7 @@ def add_attendance_save(request):
         # address = request.POST.get('address')
 
         try:
-            user = AttendanceReportStaff.objects.create(staff_id=staff_id, attendance_message=attendance_message,attendance_date=attendance_date,attendance_status=attendance_status, intime=intime, outtime=outtime)
+            user = AttendanceReportStaff.objects.create(staff_id=staff_id,attendance_date=attendance_date, intime=intime, outtime=outtime)
             #user.save()
             messages.success(request, "Staff Added Successfully!")
             return redirect('add_attendance')
@@ -316,11 +316,11 @@ def export_csv(request):
     response=HttpResponse(content_type='text/csv')
     response['Content-Disposition']='attachment; fileName=Attendance'+ '.csv'
     writer=csv.writer(response)
-    writer.writerow(['Staff ID','Attendance Date','Attendance Message','Attendance Status','In Time','Out Time'])
+    writer.writerow(['Staff ID','Attendance Date','Attendance Date','In Time','Out Time'])
 
 
     attendances = AttendanceReportStaff.objects.all()
     for attendance in attendances:
 
-        writer.writerow([attendance.staff_id.id, attendance.attendance_date, attendance.attendance_message, attendance.attendance_status,attendance.intime,attendance.outtime])
+        writer.writerow([attendance.staff_id.id+1, attendance.attendance_date,attendance.intime,attendance.outtime])
     return response
