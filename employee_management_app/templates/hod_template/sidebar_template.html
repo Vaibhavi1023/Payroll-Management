@@ -203,6 +203,18 @@
               </a>
             </li>
 
+            
+            <li class="nav-item">
+              {% url 'staff_payroll_views' as staff_payroll_views%}
+              <a href="{{ staff_payroll_views }}" class="nav-link {% if request.path == staff_payroll_views %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Staff payroll
+                </p>
+              </a>
+            </li>
+
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
