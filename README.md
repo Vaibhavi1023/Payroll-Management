@@ -23,29 +23,27 @@ All other modules have to be added as pert of ver 2.0.
 
 ### Directory Structure
 
+Refer to [ERD diagram](https://github.com/Fe-WCE22/WCE22_Assassins/edit/main/README.md#database-entity-relation-diagram) below for table fields, relations, and overall structure.
+
 ### following tables already exist in fedbmiraj database 
   * employee
   * site
-  * team 
-  * attendance_band
+  * team
  
 ### following new tables are required :
- * attendance_mc ( Proton Team will be creating this),
- * holiday,
- * leave ,
- * shift_Rate_Default,
- * shift_Rate_Actual,
- * app_attendance .
+* attendance
+  * empID and date form a composite unique constraint, such that every employee can only have 1 entry for a date. The default source for the attendance data is from 'machine', when inputted manually it show the supervisor's name. All manually inputted entrys are isVerified=False until an admin reviews and approves it
+* holiday
+  * Create a 'team_holiday' joining table to model the many to many relation between holiday and team
+* leave_request
+* advance_request
+* shift_rate
+  * shift_rate is prepopulated for each team and date with a default rate. This default rate may be edited for particular dates
  
- 
- 
 
-Shift Rate Default is a team wise - day wise Salary Rate / Day.  Shift Rate Actual is the rate updated by site manager at the end of each day. If Shift Rate Actual is not updated then the default Shift Rate is used for calculation of salary .
+#### Database Entity Relation Diagram
 
-App_Attendance is the attendance updated from Mobile App and this has to be stored in a separate table from attendance updated from Attendance Machines.  The facilty for using APP for attendance is to be controlled from employee master. (is APP attendance allowed : YES / No ).  This will be a new field in the existing employee table.
-
-![WCE22 Diagrams-ERD-Payroll-JRP drawio](https://user-images.githubusercontent.com/91695658/188256121-92a26c62-6cb0-4ddd-aea5-b806ba1f73d1.png)
-
+![ERD Assassins drawio](https://user-images.githubusercontent.com/40076115/204267372-d96e278e-f6f0-4b90-8a85-48a89fe18aeb.png)
 
 
 ### Dependencies
@@ -78,10 +76,6 @@ Here is a link to Guideline for building reports [link](https://docs.google.com/
 ### Screen Layout Template
 
 ![FirstScreen Layout](https://user-images.githubusercontent.com/91695658/184523458-e53e2626-8f09-4e21-a7ed-2b2bbcb0fc9d.png)
-
-### Database Entity Relation Diagram
-
-![WCE22 Diagrams-ERD-Payroll-JRP drawio](https://user-images.githubusercontent.com/40076115/188221587-85d0877c-7e72-483a-a60f-4c9655da6e08.png)
 
 Add any additional documentation.
 
