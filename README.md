@@ -28,22 +28,23 @@ Refer to [ERD diagram](https://github.com/Fe-WCE22/WCE22_Assassins/edit/main/REA
 ### following tables already exist in fedbmiraj database 
   * employee
   * site
-  * team
  
 ### following new tables are required :
+
+* team
 * attendance
   * empID and date form a composite unique constraint, such that every employee can only have 1 entry for a date. The default source for the attendance data is from 'machine', when inputted manually it show the supervisor's name. All manually inputted entrys are isVerified=False until an admin reviews and approves it
 * holiday
-  * Create a 'team_holiday' joining table to model the many to many relation between holiday and team
+  * Create a 'group_holiday' joining table to model the many to many relation between holiday and team
 * leave_request
 * advance_request
 * shift_rate
-  * shift_rate is prepopulated for each team and date with a default rate. This default rate may be edited for particular dates
+  * shift_rate is prepopulated for each group and date with a default rate. This default rate may be edited for particular dates
  
 
 #### Database Entity Relation Diagram
 
-![ERD Assassins drawio](https://user-images.githubusercontent.com/40076115/204267372-d96e278e-f6f0-4b90-8a85-48a89fe18aeb.png)
+![ERD Assassins drawio (1)](https://user-images.githubusercontent.com/40076115/204317283-18afe682-1710-4f45-947a-40b0c03ed7e2.png)
 
 
 ### Dependencies
