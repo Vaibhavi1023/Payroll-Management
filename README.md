@@ -32,20 +32,21 @@ Refer to [ERD diagram](https://github.com/Fe-WCE22/WCE22_Assassins/edit/main/REA
 ### following new tables are required :
 
 * team
-* attendance
+* attendance_muster
   * empID and date form a composite unique constraint, such that every employee can only have 1 entry for a date. The default source for the attendance data is from 'machine', when inputted manually it show the supervisor's name. All manually inputted entrys are isVerified=False until an admin reviews and approves it
 * holiday
   * Create a 'group_holiday' joining table to model the many to many relation between holiday and team
 * leave_request
 * advance_request
 * shift_rate
-  * shift_rate is prepopulated for each group and date with a default rate. This default rate may be edited for particular dates
+  * shift_rates are defined for a group and site with a startdate and enddate
+* shift_rate_default
+  * shift_rate_default contains default rates for a froup and site with effect from a certain date (wef_date). They are used when a date-specific shift_rate is not found
  
 
 #### Database Entity Relation Diagram
 
-![ERD Assassins drawio (1)](https://user-images.githubusercontent.com/40076115/204317283-18afe682-1710-4f45-947a-40b0c03ed7e2.png)
-
+![ERD Assassins-ERD drawio](https://user-images.githubusercontent.com/40076115/205146915-fe57d60b-ea56-4280-ba6c-cc0341ae8d92.png)
 
 ### Dependencies
 
