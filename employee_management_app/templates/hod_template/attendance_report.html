@@ -1,0 +1,109 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+<br>
+    Attendance Report
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+   
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card bg-white">
+                    <div class="card-header bg-light">
+                        <h3 class="card-title">Attendance Report</h3>
+                    </div>
+                    <!-- /.card-header -->
+
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <div class="card-body">
+                           
+                            <span class="form-group">
+                                <label>From Date 
+                                <input type="date" name="fromdate" class="form-control" style="width: 210px;" /></label>
+                                </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+
+                            <span class="form-group">
+                                <label>To Date 
+                                <input type="date" name="todate" class="form-control" style="width: 210px;"/> </label>
+                            </span> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                            <br>
+                            <br>
+                            <span class="form-group">
+                                <label>Group ID
+                                <input type="integer" name="groupid" class="form-control" style="width: 210px;"/> </label>
+                            </span> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+
+                            <span class="form-group">
+                                <label>Site ID 
+                                <input type="integer" name="siteid" class="form-control" style="width: 210px;" /> </label>
+                            </span>
+
+                            <!-- <div class="form-group">
+                                <label>Leave Reason </label>
+                                <input type="text" name="leave_message" class="form-control" />
+                            </div> -->
+
+                            <!-- <div class="form-group">
+                                <label>Leave Reason </label>
+                                <textarea name="leave_message" class="form-control" rows="6" placeholder="Leave Messge"></textarea>
+                            </div> -->
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-success">Generate Report</button>
+                        </div>
+
+                    </form>
+
+                    </div>
+                    <!-- /.card -->
+
+
+
+                </div>
+            </div>
+<!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+{% block custom_js %}
+
+{% endblock custom_js %}

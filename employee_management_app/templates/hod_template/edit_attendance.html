@@ -1,0 +1,102 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Edit Attendance | Username: {{ staff.admin.username }} | #ID : {{ staff.admin.id }}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header bg-light">
+                        <h3 class="card-title">Edit Attendance</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_attendance_save' %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            <!-- <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" value="{{ staff.admin.email }}">
+                            </div> -->
+
+                            <!-- <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" value="{{ staff.admin.username }}">
+                            </div> -->
+
+                            
+
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" name="attendance_date" value="{{attendance.attendance_date}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>In Time</label>
+                                <input type="time" class="form-control" name="intime" value="{{attendance.intime }}">
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <label>Out Time</label>
+                                <input type="time" class="form-control" name="outtime" value="{{ attendance.outtime }}">
+                                
+                            </div>
+
+                            
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-outline-primary">Update Attendance</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

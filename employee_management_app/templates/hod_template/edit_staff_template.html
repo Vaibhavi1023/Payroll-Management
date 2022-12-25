@@ -1,7 +1,7 @@
 {% extends 'hod_template/base_template.html' %}
 
 {% block page_title %}
-    Edit Staff | Username: {{ staff.admin.username }} | #ID : {{ staff.admin.id }}
+    Edit Staff | Username: {{ staff.admin.username }} | ID : {{ staff.admin.id }}
 {% endblock page_title %}
 
 {% block main_content %}
@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                    <div class="card-header">
+                    <div class="card-header bg-light">
                         <h3 class="card-title">Edit Staff</h3>
                     </div>
                     <!-- /.card-header -->
@@ -89,7 +89,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Update Staff</button>
+                        <button type="submit" class="btn btn-outline-primary">Update Staff</button>
                         </div>
                     </form>
                     </div>

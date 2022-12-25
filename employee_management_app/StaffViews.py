@@ -38,11 +38,11 @@ def staff_apply_leave_save(request):
     else:
         leave_startdate = request.POST.get('leave_startdate')
         leave_enddate = request.POST.get('leave_enddate')
-        # leave_message = request.POST.get('leave_message')
+        leave_message = request.POST.get('leave_message')
 
         staff_obj = Staffs.objects.get(admin=request.user.id)
         try:
-            leave_report = LeaveReportStaff(staff_id=staff_obj, leave_startdate=leave_startdate,leave_enddate=leave_enddate, leave_status=0)
+            leave_report = LeaveReportStaff(staff_id=staff_obj, leave_startdate=leave_startdate,leave_enddate=leave_enddate,leave_message=leave_message, leave_status=0)
             leave_report.save()
             messages.success(request, "Applied for Leave.")
             return redirect('staff_apply_leave')

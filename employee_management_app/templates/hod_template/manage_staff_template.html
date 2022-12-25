@@ -1,120 +1,186 @@
-{% extends 'hod_template/base_template.html' %}
-
-{% block page_title %}
-    Manage Staff
-{% endblock page_title %}
-
+{% extends 'hod_template/base_template.html' %} 
 {% block main_content %}
+{%load static%}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">Manage Staff</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a href="#">Export</a></li>
+      <li class="breadcrumb-item active">Home</li>
+    </ol>
+    {%url 'add_staff' as add_staff%}
+    <a href="{{add_staff}}" class="btn btn-alt-info mr-5 mb-5 btn-success">
+      &nbsp;Add Staff
+    </a>
+    <div class="card mb-4">
+        
+    </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable Example
+      </div>
+      <div class="card-body">
+        <table id="datatablesSimple" style="overflow-x: scroll;">
+          <thead>
+            <tr >
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;">
+                    <a class="dataTable-sorter">ID 
+                    </a></th>
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">First Name</a></th>
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">Last Name</a></th>
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">Username</a></th>
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">Email</a></th>
+                <!-- <th><a class="dataTable-sorter">Address</a></th> -->
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">Last Login</a></th>
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">Group ID</a></th>
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;"><a class="dataTable-sorter">Site ID</a></th>
+                <!-- <th><a class="dataTable-sorter">Date Joined</a></th> -->
+                <th class="d-sm-table-cell text-center" style="font-size: 13px;">Action</th>
+            </tr>
+          </thead>
+          <!--<tfoot>
+            <tr>
+                <th>Export Date</th>
+                <th>Invoice No.</th>
+                <th>From Site</th>
+                <th>Destination</th>
+                <th>Container No.</th>
+                <th>Driver Name</th>
+                <th>Driver Mob</th>
+                <th>Truck No</th>
+                <th>Container Seal No.</th>
+                <th>Shiping Line</th>
+                <th>Crop</th>
+                <th>Transport Master</th>
+                <th>Acti5ons</th>
+            </tr>
+          </tfoot> -->
+          <tbody>
+            {% for staff in staffs %} 
+            <tr>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px; ;">{{ staff.admin.id }}</td>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.first_name }}</td>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.last_name }}</td>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.username }}</td>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.email }}</td>
+            <!-- <td>{{ staff.address }}</td> -->
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.last_login }}</td>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.group_id_id }}</td>
+            <td class="d-sm-table-cell text-center" style="font-size: 13px;">{{ staff.admin.site_id_id }}</td>
+            <!-- <td>{{ staff.admin.date_joined }}</td> -->
+            <td class="text-center">
+                <div class="btn-group">
+                  <a
+                    href=""
+                    class="btn btn-sm btn-secondary"
+                    data-toggle="tooltip"
+                    title="View container Movement"
+                  >
+                    <i class="fa fa-eye"></i>
+                  </a>
+                  <a   
+                    href="{% url 'edit_staff' staff.admin.id %}"
+                    class="btn btn-sm btn-secondary"
+                    data-toggle="tooltip"
+                    title="Edit Staff"
+                  >
+                    <i class="fas fa-pencil-alt"></i>
+                  </a>
+                  <a
+                    href="{% url 'delete_staff' staff.admin.id %}"
+                    class = "btn btn-sm btn-secondary"
+                    data-toggle="tooltip"
+                    title="Delete Staff"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </div>
+                <!-- <div class="btn" style="background-color: #555555" >
+                
+                    <a href="{}" > <span class="glyphicon glyphicon-eye-open" style="color: #ffff;"></span></a> &nbsp;
+                
+                    <a href="{% url 'edit_staff' staff.admin.id %}"     ><span class="glyphicon glyphicon-pencil" style="color: #ffff;"></span></a> &nbsp;
+
+                    <a href="{% url 'delete_staff' staff.admin.id %}"  ><span class="glyphicon glyphicon-trash" style="color: #ffff;"></span></a> 
+
+                 -->
+            
+            </td>
+            </tr>
+            
+            {% endfor %}   
+        </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!--<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">Export Registration</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active"></li>
+    </ol>
+    <div class="content">
+      <!-- Dynamic Table Full -->
+      <div class="block">
+        <div class="block-header block-header-default">
+          <!-- <h3 class="block-title">Users </h3> -->
+
+          
+          <!--<?php } ?> -->
+        </div>
+        <div class="block-content">
+          <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+          <div class="row justify-content-start py-20">
+            <div class="col-lg-12">
+              <!-- <?php
+                            // Include config file
+                            require "connect_db.php";
+
+                            // Attempt select query execution
+                            $sql = "SELECT * FROM inward";
+                            if($result = mysqli_query($conn, $sql)){
+                                if(mysqli_num_rows($result) > 0){
+
+                                    echo " 
+
+              <table
+                class="table table-bordered table-striped table-vcenter js-dataTable-full"
+                style="display: inline-block; overflow-x: scroll"
+              >
+                <thead>
+                  <tr>
+                    <th class="text-center extable" style="width: 15%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+
+              {% if not exportData %}
+              <p><em>No records were found.</em></p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main> -->
 
 {% load static %}
+<script src="{% static '/feweather_styling/static/js/plugins.js' %}"></script>
+<script src="{% static '/feweather_styling/static/js/scripts.js' %}"></script>
+<script src="{% static '/feweather_styling/static/js/datatables-simple-demo.js' %}"></script>
 
-<section class="content">
-        <div class="container-fluid">
-
-            <a class="btn btn-primary" href="{% url 'add_staff' %}" role="button">+ Add Staff</a> <br/>&nbsp;
-
-            {% if messages %}
-                                <div class="form-group">
-                                <div class="col-12">
-                                    {% for message in messages %}
-                                    {% if message.tags == "error" %}
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
-                                        {{ message }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                    {% elif message.tags == "success" %}
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
-                                        {{ message }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                    {% endif %}
-                                    {% endfor %}
-                                </div>
-                                </div>
-                                {% endif %}
-                                
-
-            <div class="row">
-
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Staff Details</h3>
-
-                            <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                <div class="input-group-append">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Last Login</th>
-                                <th>Date Joined</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for staff in staffs %}
-                                <tr>
-                                <td>{{ staff.admin.id }}</td>
-                                <td>{{ staff.admin.first_name }}</td>
-                                <td>{{ staff.admin.last_name }}</td>
-                                <td>{{ staff.admin.username }}</td>
-                                <td>{{ staff.admin.email }}</td>
-                                <td>{{ staff.address }}</td>
-                                <td>{{ staff.admin.last_login }}</td>
-                                <td>{{ staff.admin.date_joined }}</td>
-                                <td>
-                                    
-                                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                                    
-                                    <div class="btn" style="background-color: #555555" >
-                                    
-                                        <a href="{}" > <span class="glyphicon glyphicon-eye-open" style="color: #ffff;"></span></a> &nbsp;
-                                    
-                                        <a href="{% url 'edit_staff' staff.admin.id %}"     ><span class="glyphicon glyphicon-pencil" style="color: #ffff;"></span></a> &nbsp;
-
-                                        <a href="{% url 'delete_staff' staff.admin.id %}"  ><span class="glyphicon glyphicon-trash" style="color: #ffff;"></span></a> 
-
-                                    
-                                </div>
-                                </td>
-                                </tr>
-                                {% endfor %}
-                                
-                            </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                        </div>
-                    <!-- /.card -->
-
-                </div>
-            </div>
-
-        </div><!-- /.container-fluid -->
-      </section>
-
-  {% endblock main_content %}
+{% endblock main_content %}

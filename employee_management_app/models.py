@@ -13,11 +13,22 @@ class SessionYearModel(models.Model):
 
 
 
+class Site(models.Model):
+    id = models.AutoField(primary_key=True, blank=True)
+    sname=models.CharField(max_length=255)
+    objects = models.Manager()
+
+class Group(models.Model):
+    id = models.AutoField(primary_key=True, blank=True)
+    gname=models.CharField(max_length=255)
+    objects = models.Manager()
+
 # Overriding the Default Django Auth User and adding One More Field (user_type)
 class CustomUser(AbstractUser):
     user_type_data = ((1, "HOD"), (2, "Staff"))
     user_type = models.CharField(default=1, choices=user_type_data, max_length=10)
-
+    group_id = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True ,null=True)
+    site_id = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
 
 
 class AdminHOD(models.Model):
@@ -28,11 +39,26 @@ class AdminHOD(models.Model):
     objects = models.Manager()
 
 
+
+
+
+# class Staffs3(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     group_id = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True ,null=True)
+#     site_id = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
+#     admin = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
+#     address = models.TextField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+#     objects = models.Manager()
+
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
+    group_id = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True ,null=True)
+    site_id = models.ForeignKey(Site, on_delete=models.CASCADE, blank=True, null=True)
     admin = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
     address = models.TextField()
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
 
@@ -48,19 +74,17 @@ class LeaveReportStaff(models.Model):
     leave_enddate = models.DateField(null=True)
     leave_message = models.TextField(null=True)
     leave_status = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)
     objects=models.Manager()
-
-
 
 
 
 class FeedBackStaffs(models.Model):
     id = models.AutoField(primary_key=True)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    feedback = models.TextField(null=True,blank=True)
-    feedback_reply = models.TextField(null=True,blank=True)
+    feedback = models.TextField()
+    feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
@@ -70,13 +94,17 @@ class FeedBackStaffs(models.Model):
 
 
 
-# class NotificationStaffs(models.Model):
+class NotificationStaffs(models.Model):
     id = models.AutoField(primary_key=True)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
+
+
+
+
 
 
 
@@ -93,14 +121,6 @@ class AttendanceReportStaff(models.Model):
     # updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
 
-
-
-class PayrollReportStaff(models.Model):
-    id = models.AutoField(primary_key=True)
-    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    payroll_date = models.DateField(null=True)
-    payroll_money=models.IntegerField()
-    objects = models.Manager()
 
 #Creating Django Signals
 

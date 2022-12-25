@@ -12,11 +12,11 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-11">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                    <div class="card-header" >
-                        <h3 class="card-title">Add attendance</h3>
+                    <div class="card-header bg-light" >
+                        <h3 class="card-title" >Add attendance</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -27,7 +27,7 @@
                                 {% comment %} Display Messages {% endcomment %}
                                 {% if messages %}
                                 <div class="form-group">
-                                <div class="col-12">
+                                <div class="col-11">
                                     {% for message in messages %}
                                     {% if message.tags == "error" %}
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
@@ -51,25 +51,28 @@
                             
 
                         <div class="card-body">
-                            <div class="form-group">
-                                <label>Staff ID</label>
-                                <input type="text" class="form-control" name="staff_id" placeholder="Enter ID" id="staff_id">
-                            </div>
 
-                            <div class="form-group">
-                                <label>Attendance Date</label>
-                                <input type="date" class="form-control" name="attendance_date" placeholder="Date" id="attendance_date">
-                            </div>
 
-                            <div class="form-group">
-                                <label>In Time</label>
-                                <input type="time" class="form-control" name="intime">
-                            </div>
+                            <span class="form-group">
+                                <label >Staff ID 
+                                <input type="text" class="form-control" name="staff_id" placeholder="Enter ID" id="staff_id" /> </label>
+                                </span> <br>
 
-                            <div class="form-group">
-                                <label>Out Time</label>
-                                <input type="time" class="form-control" name="outtime" >
-                            </div>
+                            <span class="form-group">
+                                <label>Attendance Date
+                                <input type="date" class="form-control" name="attendance_date" placeholder="Date" id="attendance_date" style="width: 210px ;"/> </label>
+                                </span>  &nbsp; &nbsp; &nbsp;
+
+                            
+                            <span class="form-group">
+                                <label>In Time
+                                <input type="time" class="form-control" name="intime"/></label>
+                            </span> &nbsp; &nbsp; &nbsp;
+
+                            <span class="form-group">
+                                <label>Out Time  
+                                <input type="time" class="form-control" name="outtime" /></label>
+                                </span>
 
                             <!-- <div class="form-group">
                                 <label>Message</label>
@@ -98,7 +101,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Add attendance</button>
+                        <button type="submit" class="btn btn-success">Add attendance</button>
                         </div>
                     </form>
                     </div>

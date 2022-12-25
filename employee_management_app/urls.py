@@ -4,6 +4,7 @@ from . import views
 from .import HodViews, StaffViews
 
 
+
 urlpatterns = [
     path('', views.loginPage, name="login"),
 
@@ -18,6 +19,20 @@ urlpatterns = [
     path('edit_staff_save/', HodViews.edit_staff_save, name="edit_staff_save"),
     path('delete_staff/<staff_id>/', HodViews.delete_staff, name="delete_staff"),
 
+
+    path('manage_group/', HodViews.manage_group, name="manage_group"),
+    path('add_group/', HodViews.add_group, name="add_group"),
+    path('add_group_save/', HodViews.add_group_save, name="add_group_save"),
+    path('manage_site/', HodViews.manage_site, name="manage_site"),
+    path('add_site/', HodViews.add_site, name="add_site"),
+    path('add_site_save/', HodViews.add_site_save, name="add_site_save"),
+
+
+    path('attendance_report/', HodViews.attendance_report, name="attendance_report"),
+    path('payroll_report/', HodViews.payroll_report, name="payroll_report"),
+    path('unapprovedleave_report/', HodViews.unapprovedleave_report, name="unapprovedleave_report"),
+
+
     path('check_email_exist/', HodViews.check_email_exist, name="check_email_exist"),
     path('check_username_exist/', HodViews.check_username_exist, name="check_username_exist"),
 
@@ -30,8 +45,9 @@ urlpatterns = [
 
     path('admin_profile/', HodViews.admin_profile, name="admin_profile"),
     path('admin_profile_update/', HodViews.admin_profile_update, name="admin_profile_update"),
-    path('staff_payroll_views/', HodViews.staff_payroll_views, name="staff_payroll_views"),
+        # path('staff_payroll_views/', HodViews.staff_payroll_views, name="staff_payroll_views"),
 
+    path('upload/', HodViews.UploadFileView.as_view(), name='upload-file'),
 
 
 
@@ -49,6 +65,9 @@ urlpatterns = [
     path('add_attendance/', HodViews.add_attendance, name="add_attendance"),
     path('add_attendance_save/', HodViews.add_attendance_save, name="add_attendance_save"),
     
+
+    path('edit_attendance/<staff_id>/', HodViews.edit_attendance, name="edit_attendance"),
+    path('edit_attendance_save/', HodViews.edit_attendance_save, name="edit_attendance_save"),
 
     path('export_csv/', HodViews.export_csv, name="export_csv"),
 
