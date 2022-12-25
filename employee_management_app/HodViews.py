@@ -528,14 +528,30 @@ class UploadFileView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         file = serializer.validated_data['file']
         reader = pd.read_csv(file, on_bad_lines='skip', encoding='latin-1')
+        ct=0
+        sp=-1
+        
         for _, row in reader.iterrows():
+            sp=row['id']
+            import math
+            # print("//////////////////////")
+            ct=ct+1
+            if sp==-1:
+                print("......errror solved>>>")
+                break
             new_file = AttendanceReportStaff(
-                       id=row["id"],
+                      
+                       id=row['id'],
                        staff_id_id = row["staff_id_id"],
                        attendance_date= row["attendance_date"],
                        intime= row["intime"],
                        outtime= row["outtime"],
                        )
+            # print(sp)
+            
+            # print(ct)
+            # print("....................")
             new_file.save()
+        print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb......")
         return Response({"status": "success"},   status.HTTP_201_CREATED)
 
